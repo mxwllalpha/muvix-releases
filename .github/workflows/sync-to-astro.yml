@@ -1,0 +1,55 @@
+name: Sync Release to Muvix Astro
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout muvix-astro
+        uses: actions/checkout@v4
+        with:
+          repository: mxwllalpha/muvix-astro
+          token: ${{ secrets.ASTRO_REPO_PAT }}
+          path: muvix-astro
+
+      - name: Create release data directory
+        working-directory: muvix-astro
+        run: |
+          mkdir -p public/data
+
+      - name: Fetch release metadata
+        working-directory: muvix-astro
+        run: |
+          RELEASE_JSON=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/latest")
+
+          VERSION=$(echo "$RELEASE_JSON" | jq -r '.tag_name | sub("^v"; "")')
+          VERSION_CODE=$(echo "$VERSION" | awk -F. '{printf "%d%02d%02d", $1, $2, $3}')
+          APK_URL=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name | endswith(".apk")) | .browser_download_url' | head -1)
+          RELEASE_NOTES=$(echo "$RELEASE_JSON" | jq -r '.body // ""')
+          APK_SIZE=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name | endswith(".apk")) | .size' | head -1)
+
+          cat > public/data/update.json << EOF
+          {
+            "versionCode": $VERSION_CODE,
+            "versionName": "$VERSION",
+            "forceUpdate": false,
+            "apkUrl": "$APK_URL",
+            "releaseNotes": $(echo "$RELEASE_NOTES" | jq -Rs '.'),
+            "apkSize": ${APK_SIZE:-0}
+          }
+          EOF
+
+      - name: Commit and push
+        working-directory: muvix-astro
+        run: |
+          git config user.name "Muvix Bot"
+          git config user.email "bot@muvix.org"
+          git add public/data/update.json
+          git diff --staged --quiet || git commit -m "chore: sync release v$(jq -r '.versionName' public/data/update.json)"
+          git push
