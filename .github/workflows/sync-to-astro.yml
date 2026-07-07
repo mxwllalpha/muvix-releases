@@ -4,9 +4,15 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: read
+
 jobs:
   sync:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: muvix-astro
     steps:
       - name: Checkout muvix-astro
         uses: actions/checkout@v4
@@ -15,38 +21,34 @@ jobs:
           token: ${{ secrets.ASTRO_REPO_PAT }}
           path: muvix-astro
 
-      - name: Create release data directory
-        working-directory: muvix-astro
+      - name: Write release metadata
+        env:
+          RELEASE_JSON: ${{ toJson(github.event.release) }}
         run: |
           mkdir -p public/data
-
-      - name: Fetch release metadata
-        working-directory: muvix-astro
-        run: |
-          RELEASE_JSON=$(curl -s \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/${{ github.repository }}/releases/latest")
-
-          VERSION=$(echo "$RELEASE_JSON" | jq -r '.tag_name | sub("^v"; "")')
-          VERSION_CODE=$(echo "$VERSION" | awk -F. '{printf "%d%02d%02d", $1, $2, $3}')
-          APK_URL=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name | endswith(".apk")) | .browser_download_url' | head -1)
-          RELEASE_NOTES=$(echo "$RELEASE_JSON" | jq -r '.body // ""')
-          APK_SIZE=$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name | endswith(".apk")) | .size' | head -1)
-
-          cat > public/data/update.json << EOF
-          {
-            "versionCode": $VERSION_CODE,
-            "versionName": "$VERSION",
-            "forceUpdate": false,
-            "apkUrl": "$APK_URL",
-            "releaseNotes": $(echo "$RELEASE_NOTES" | jq -Rs '.'),
-            "apkSize": ${APK_SIZE:-0}
-          }
-          EOF
+          echo "$RELEASE_JSON" | node -e '
+            const fs = require("fs");
+            const release = JSON.parse(require("fs").readFileSync(0, "utf8"));
+            const asset = release.assets.find(a => a.name.endsWith(".apk"));
+            if (!asset) {
+              console.error("No APK asset found in release");
+              process.exit(1);
+            }
+            const version = release.tag_name.replace(/^v/, "");
+            const [major = 0, minor = 0, patch = 0] = version.split(".").map(Number);
+            const versionCode = major * 10000 + minor * 100 + patch;
+            const data = {
+              versionCode,
+              versionName: version,
+              forceUpdate: false,
+              apkUrl: asset.browser_download_url,
+              releaseNotes: release.body || "",
+              apkSize: asset.size
+            };
+            fs.writeFileSync("public/data/update.json", JSON.stringify(data, null, 2));
+          '
 
       - name: Commit and push
-        working-directory: muvix-astro
         run: |
           git config user.name "Muvix Bot"
           git config user.email "bot@muvix.org"
