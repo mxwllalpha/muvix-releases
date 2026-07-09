@@ -1,6 +1,6 @@
 <!--
 SEO Meta Description:
-Download Muvix APK — the best free Android streaming app for movies, TV shows, and entertainment. Get the latest Muvix 2.0.0 release with fast updates and multi-language support.
+Download Muvix APK — the best free Android streaming app for movies, TV shows, and entertainment. Get the latest Muvix 2.0.1 release with Android TV support, responsive layout, and fast updates.
 -->
 
 # Muvix — Free Android Streaming App
@@ -10,11 +10,11 @@ Download Muvix APK — the best free Android streaming app for movies, TV shows,
 [![Website](https://img.shields.io/badge/website-muvix.org-blue)](https://muvix.org)
 [![Android](https://img.shields.io/badge/Android-6.0%2B-green?logo=android)](https://github.com/mxwllalpha/muvix-releases/releases/latest)
 
-**Muvix** is a free Android streaming application for watching movies, TV series, and entertainment content on your phone or tablet. Download the latest Muvix APK release directly from this page.
+**Muvix** is a free Android streaming application for watching movies, TV series, and entertainment content on your phone, tablet, or Android TV. Download the latest Muvix APK release directly from this page.
 
 - **Official website:** [https://muvix.org](https://muvix.org)
 - **Latest release:** [https://github.com/mxwllalpha/muvix-releases/releases/latest](https://github.com/mxwllalpha/muvix-releases/releases/latest)
-- **Download APK:** [Muvix 2.0.0 APK](https://github.com/mxwllalpha/muvix-releases/releases/latest/download/muvix-2.0.0.apk)
+- **Download APK:** [Muvix 2.0.1 APK](https://github.com/mxwllalpha/muvix-releases/releases/latest/download/muvix-2.0.1.apk)
 
 ---
 
@@ -47,7 +47,7 @@ Download Muvix APK — the best free Android streaming app for movies, TV shows,
 
 | Version | APK Size | Android | Download |
 |---|---|---|---|
-| **2.0.0** | ~7.3 MB | 6.0+ | [muvix-2.0.0.apk](https://github.com/mxwllalpha/muvix-releases/releases/latest/download/muvix-2.0.0.apk) |
+| **2.0.1** | ~7.5 MB | 6.0+ | [muvix-2.0.1.apk](https://github.com/mxwllalpha/muvix-releases/releases/latest/download/muvix-2.0.1.apk) |
 
 ### How to Install
 
@@ -73,12 +73,14 @@ Download Muvix APK — the best free Android streaming app for movies, TV shows,
 
 See the full changelog on the [releases page](https://github.com/mxwllalpha/muvix-releases/releases).
 
-### v2.0.0 Highlights
+### v2.0.1 Highlights
 
-- Major performance improvements
-- Updated user interface
-- Enhanced streaming stability
-- Bug fixes and optimizations
+- 📺 Android TV support with dedicated TV screens
+- 📱 Responsive adaptive grid layout for phone and TV
+- 🎬 Improved player subtitle UX and player refactor
+- 🎯 Ads eligibility checker for controlled ad serving
+- 🎨 New brand icons and TV banner
+- 🔧 Firebase Analytics fix and dashboard documentation
 
 ---
 
