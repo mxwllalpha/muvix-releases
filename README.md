@@ -75,12 +75,12 @@ See the full changelog on the [releases page](https://github.com/mxwllalpha/muvi
 
 ### v2.0.1 Highlights
 
-- 📺 Android TV support with dedicated TV screens
-- 📱 Responsive adaptive grid layout for phone and TV
-- 🎬 Improved player subtitle UX and player refactor
-- 🎯 Ads eligibility checker for controlled ad serving
-- 🎨 New brand icons and TV banner
-- 🔧 Firebase Analytics fix and dashboard documentation
+- 📺 Android TV support with easy remote navigation
+- 📱 Responsive layout that looks great on phones and TVs
+- 🎬 Cleaner subtitles and more stable video playback
+- 🎯 Better ad experience with fewer interruptions
+- 🎨 Fresh app icons and TV banner
+- 🔧 Stability improvements and better analytics
 
 ---
 
