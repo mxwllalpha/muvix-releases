@@ -1,6 +1,6 @@
 <!--
 SEO Meta Description:
-Download Muvix APK — the best free Android streaming app for movies, TV shows, and entertainment. Get the latest Muvix 2.0.1 release with Android TV support, responsive layout, and fast updates.
+Download Muvix APK — the best free Android streaming app for movies, TV shows, and entertainment. Get the latest Muvix 2.0.2 release with bug fixes, force update, and improved stability.
 -->
 
 # Muvix — Free Android Streaming App
@@ -14,7 +14,7 @@ Download Muvix APK — the best free Android streaming app for movies, TV shows,
 
 - **Official website:** [https://muvix.org](https://muvix.org)
 - **Latest release:** [https://github.com/mxwllalpha/muvix-releases/releases/latest](https://github.com/mxwllalpha/muvix-releases/releases/latest)
-- **Download APK:** [Muvix 2.0.1 APK](https://github.com/mxwllalpha/muvix-releases/releases/latest/download/muvix-2.0.1.apk)
+- **Download APK:** [Muvix 2.0.2 APK](https://github.com/mxwllalpha/muvix-releases/releases/latest/download/muvix-2.0.2.apk)
 
 ---
 
@@ -47,7 +47,7 @@ Download Muvix APK — the best free Android streaming app for movies, TV shows,
 
 | Version | APK Size | Android | Download |
 |---|---|---|---|
-| **2.0.1** | ~7.5 MB | 6.0+ | [muvix-2.0.1.apk](https://github.com/mxwllalpha/muvix-releases/releases/latest/download/muvix-2.0.1.apk) |
+| **2.0.2** | ~7.5 MB | 6.0+ | [muvix-2.0.2.apk](https://github.com/mxwllalpha/muvix-releases/releases/latest/download/muvix-2.0.2.apk) |
 
 ### How to Install
 
@@ -73,14 +73,12 @@ Download Muvix APK — the best free Android streaming app for movies, TV shows,
 
 See the full changelog on the [releases page](https://github.com/mxwllalpha/muvix-releases/releases).
 
-### v2.0.1 Highlights
+### v2.0.2 Highlights
 
-- 📺 Android TV support with easy remote navigation
-- 📱 Responsive layout that looks great on phones and TVs
-- 🎬 Cleaner subtitles and more stable video playback
-- 🎯 Better ad experience with fewer interruptions
-- 🎨 Fresh app icons and TV banner
-- 🔧 Stability improvements and better analytics
+- 🐛 Fix crash after repeated use (database cache handling)
+- 🔄 Force update always enabled when update available
+- 🎯 Smoother ad experience with transition delay
+- 🔧 Code quality improvements and better error handling
 
 ---
 
